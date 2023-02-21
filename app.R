@@ -8,6 +8,7 @@ library(clValid)
 library(fresh)
 library(cluster)
 library(wesanderson)
+library(later)
 
 ###############################
 ### function for silhouette ###
@@ -94,20 +95,19 @@ dunngraph <- function(data) {
 ################
 
 ### wine dataset ###
-wine <- read_csv("~/Desktop/R/thesis/realdatasets/wine.data", 
-                 col_names = FALSE)
+wine <- read_csv("datasets/wine.data", col_names = FALSE)
 wine <- wine[-1]
 wine <- scale(wine)
 ### column dataset ###
-column3c <- read_table("~/Desktop/R/thesis/realdatasets/column_3C.dat", 
-                       col_names = FALSE)
+column3c <- column_3C <- read_table("datasets/column_3C.dat", 
+                                    col_names = FALSE)
 column <-  column3c[-7]
 data.pca <- prcomp(column, center = TRUE, scale. = TRUE)
 column <- predict(data.pca)[,1:2]
 column <- as.data.frame(column)
 ### ecoli dataset ###
-ecoli <- read_table("~/Desktop/R/thesis/realdatasets/ecoli.data", 
-                    col_names = FALSE)
+ecoli <- ecoli <- read_table("datasets/ecoli.data", 
+                             col_names = FALSE)
 ecoli <- ecoli [-1]
 ecoli <- ecoli [-8]
 ecoli <- scale(ecoli)
@@ -121,13 +121,12 @@ iris <- predict(data.pca)[,1:2]
 iris <- as.data.frame(iris)
 
 ### haberman ###
-haberman <- read_csv("~/Desktop/R/thesis/realdatasets/haberman.data", 
+haberman <- read_csv("datasets/haberman.data", 
                      col_names = FALSE)
 haberman <- scale(haberman[1:3])
 
 ### wdbc ###
-wdbc <- read_csv("~/Desktop/R/thesis/realdatasets/wdbc.data", 
-                 col_names = FALSE)
+wdbc <- read_csv("datasets/wdbc.data", col_names = FALSE)
 wdbc <- wdbc[1:12]
 wdbc <- wdbc[3:12]
 data.pca <- prcomp(wdbc, center = TRUE, scale. = TRUE) # 2 pc is ok
@@ -135,7 +134,7 @@ wdbc <- predict(data.pca)[,1:2]
 wdbc <- as.data.frame(wdbc)
 
 ### breast_tissue ###
-breast_tissue <- read_excel("~/Desktop/R/thesis/realdatasets/breastissue.xlsx")
+breast_tissue <- read_excel("datasets/breastissue.xlsx")
 breast_tissue <- breast_tissue[-1] 
 data.pca <- prcomp(breast_tissue, center = TRUE, scale. = TRUE)
 breast_tissue <- predict(data.pca)[,1:2]
@@ -145,7 +144,7 @@ breast_tissue <- as.data.frame(breast_tissue)
 ## appendicitis ###
 ###################
 
-appen <- read_csv("~/Desktop/R/thesis/realdatasets/appendicitis.csv") # data import
+appen <- read_csv("datasets/appendicitis.csv")
 appen <- appen[-8]
 data.pca <- prcomp(appen, center = TRUE, scale. = TRUE)
 appen <- as.data.frame(predict(data.pca)[,1:3])
@@ -154,7 +153,7 @@ appen <- as.data.frame(predict(data.pca)[,1:3])
 ### userknow ###
 ################
 
-userknow <-  read_excel("~/Desktop/R/thesis/realdatasets/userknow.xlsx")
+userknow <-  userknow <- read_excel("datasets/userknow.xlsx")
 userknow <-  userknow[-6]
 userknow <- scale(userknow)
 
